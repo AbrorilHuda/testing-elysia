@@ -1,7 +1,16 @@
 import { Elysia } from "elysia";
 import { myDocumentation } from "./lib/doc/swagger";
+
+type dataType = {
+  name: string
+  age: number
+}
+
 class Note {
-  constructor(public data: string[] = ["hallo"]){}
+  constructor(public data: dataType[] = [{
+    name: "anjas",
+    age: 45
+  }]){}
 }
 
 const app = new Elysia()
@@ -15,7 +24,12 @@ const app = new Elysia()
             .post("/sign-in", ({ body }) => body)
             .put("/sign-up", ({ body }) => body)
     })
-.listen(3000);
+    .ws('/ping', {
+      message(ws, message) {
+          ws.send('hello ' + message)
+      }
+  })
+.listen(Bun.env.PORT!);
 
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
