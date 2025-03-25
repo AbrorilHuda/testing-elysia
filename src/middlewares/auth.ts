@@ -1,5 +1,5 @@
 import {Elysia} from "elysia"
-import {jwt} from "@elysiajs/jwt"
+import jwt from "@elysiajs/jwt"
 import User from "../databases/models/User";
 
 export const authMiddleware = (app: Elysia) => {
