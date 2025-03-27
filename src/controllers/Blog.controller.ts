@@ -3,6 +3,13 @@ import Blog from "../databases/models/Blog";
 import Category from "../databases/models/Category";
 import { authMiddleware } from "../middlewares/auth";
 
+interface RequestBody {
+  categoryId: string | number;
+  title: string;
+  content: string;
+  imageUrl: string;
+}
+
 class BlogController {
   public init() {
     return new Elysia({ prefix: "/api" }).group("/blogs", (app) =>
@@ -55,8 +62,8 @@ class BlogController {
           },
           // refactor code
         )
-        .guard((app) =>
-          app
+        .guard((application) =>
+          application
             // middleware untuk cek apakah user terautentikasi
             // atau tidak
             .use(authMiddleware)
@@ -70,9 +77,17 @@ class BlogController {
             })
             .post(
               "/create",
-              async ({ jwt, body, headers }) => {
+              async ({
+                jwt,
+                body,
+                headers,
+              }: {
+                jwt: any;
+                body: RequestBody;
+                headers: any;
+              }) => {
                 const category = Category.FindById(
-                  Number(body.categoryId),
+                  Number((body as RequestBody).categoryId),
                 ) as CategoryType;
 
                 if (!category) {
@@ -112,7 +127,19 @@ class BlogController {
             )
             .put(
               "/update/:id",
-              async ({ jwt, body, params, set, headers }) => {
+              async ({
+                jwt,
+                body,
+                params,
+                set,
+                headers,
+              }: {
+                jwt: any;
+                body: RequestBody;
+                params: any;
+                set: any;
+                headers: any;
+              }) => {
                 const bearer = headers.authorization?.split(" ")[1];
                 const jwtPayload = await jwt.verify(bearer);
 
