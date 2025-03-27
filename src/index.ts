@@ -1,12 +1,11 @@
 import { Elysia } from "elysia";
 import { setupDatabase, resetTables } from "./databases/db";
 import { cors } from "@elysiajs/cors";
-import { swagger } from "@elysiajs/swagger";
 import AuthController from "./controllers/Auth.controller";
 import UserController from "./controllers/User.controller";
 import BlogController from "./controllers/Blog.controller";
 import CategoryController from "./controllers/Category.controller";
-import { myDocumentation } from "./lib/doc/swagger";
+import { swaggerConfig } from "./lib/config/swagger.config";
 
 // memanggil fungsi untuk inisialisasi database saat
 // pertama kali run dan reset data
@@ -19,7 +18,7 @@ console.log("✅ Done!");
 
 const app = new Elysia()
   .use(cors())
-  .use(myDocumentation)
+  .use(swaggerConfig)
   .use(AuthController)
   .use(CategoryController)
   .use(UserController)
