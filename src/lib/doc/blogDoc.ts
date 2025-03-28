@@ -1,5 +1,5 @@
 import { t } from "elysia";
-export const blogDoc = {
+export const blogSchema = {
   paths: {
     "/api/blogs/": {
       get: {
@@ -323,7 +323,7 @@ export const blogDoc = {
       error({ code, error }: { code: string; error: any }) {
         switch (code) {
           case "VALIDATION":
-            const fields: fieldsType[] = [
+            const fields = [
               {
                 path: "/title",
                 field: "title",
@@ -353,7 +353,9 @@ export const blogDoc = {
 
             const errors = fields
               .filter((field) =>
-                error.all.some((e) => "path" in e && e.path === field.path),
+                error.all.some(
+                  (e: any) => "path" in e && e.path === field.path,
+                ),
               )
               .map((field) => ({
                 field: field.field,
@@ -503,7 +505,7 @@ export const blogDoc = {
       error({ code, error }: { code: string; error: any }) {
         switch (code) {
           case "VALIDATION":
-            const fields: fieldsType[] = [
+            const fields = [
               {
                 path: "/title",
                 field: "title",
@@ -533,7 +535,9 @@ export const blogDoc = {
 
             const errors = fields
               .filter((field) =>
-                error.all.some((e) => "path" in e && e.path === field.path),
+                error.all.some(
+                  (e: any) => "path" in e && e.path === field.path,
+                ),
               )
               .map((field) => ({
                 field: field.field,

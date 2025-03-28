@@ -1,5 +1,5 @@
 import { swagger } from "@elysiajs/swagger";
-import { blogDoc } from "../doc/blogDoc";
+import { blogSchema } from "../doc/blogDoc";
 
 export const swaggerConfig = swagger({
   documentation: {
@@ -19,7 +19,7 @@ export const swaggerConfig = swagger({
     },
     servers: [{ url: "http://localhost:3000" }],
     paths: {
-      ...blogDoc.paths,
+      ...blogSchema.paths,
     },
   },
   swaggerOptions: {
