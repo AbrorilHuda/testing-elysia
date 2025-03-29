@@ -1,6 +1,6 @@
 import Elysia from "elysia";
 import type { ElysiaSwaggerConfig } from "@elysiajs/swagger";
-import { blogSchema } from "./blogDoc";
+import { blogSchema } from "./blog.doc";
 
 function getPathsFromApp(app: Elysia): ElysiaSwaggerConfig {
   // @ts-ignore - Mengakses properti internal untuk mendapatkan schema

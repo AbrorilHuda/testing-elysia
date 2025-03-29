@@ -3,13 +3,6 @@ import Blog from "../databases/models/Blog";
 import Category from "../databases/models/Category";
 import { authMiddleware } from "../middlewares/auth";
 
-interface RequestBody {
-  categoryId: string | number;
-  title: string;
-  content: string;
-  imageUrl: string;
-}
-
 class BlogController {
   public init() {
     return new Elysia({ prefix: "/api" }).group("/blogs", (app) =>
