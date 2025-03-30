@@ -1,0 +1,39 @@
+openapi: 3.0.3
+# testing code bukan file inti
+info:
+  title: Testing OpenAPI
+  version: 1.0.0
+  description: Testing OpenAPI
+  termsOfService: https://www.demtimcod.my.id
+  contact:
+    name: Abrordc
+    email: abrordc@dc.com
+    url: https://demtimcod.my.id
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit
+
+servers:
+  - description: Testing openapi
+    url: https://{environment}.demtimcod.org/api/v1
+    variables:
+      environment:
+        default: dev
+        enum:
+          - dev
+          - qa
+          - prod
+
+paths:
+  /:
+    get:
+      summary: Test API
+      operationId: testApi
+      responses:
+        "200":
+          description: Successful Response
+    post:
+      summary: Post data
+
+  /todo/update/{id}:
+    put:
