@@ -10,3 +10,10 @@ interface RequestBody {
   content: string;
   imageUrl: string;
 }
+
+interface RequestBodyUsers {
+  name: string;
+  email: string;
+  password: string;
+  isAdmin: boolean;
+}

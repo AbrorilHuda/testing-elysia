@@ -8,7 +8,7 @@ function getPathsFromApp(app: Elysia): ElysiaSwaggerConfig {
   return schema?.paths || {};
 }
 export const swaggerPaths: ElysiaSwaggerConfig = {
-  ...getPathsFromApp(blogSchema.paths),
+  // ...getPathsFromApp(blogSchema.paths),
 };
 
 // experimental fiks type to paths swagger
